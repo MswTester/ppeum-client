@@ -1,24 +1,18 @@
 import { useState } from 'react'
 import Navbar from './components/navbar'
-import Home from './pages/home'
+import Edit from './pages/edit'
 import Explore from './pages/explore'
 import Settings from './pages/settings'
 
-enum MenuType{
-  HOME,
-  EXPLORE,
-  SETTINGS
-}
-
 function App() {
-  const [state, setState] = useState<string>("home")
+  const [state, setState] = useState<string>("explore")
   const [user, setUser] = useState<IUser|null>(null)
 
   return (
     <>
-      <Navbar user={user} state={state}></Navbar>
+      <Navbar user={user} state={state} setState={setState}></Navbar>
       {
-        state === "home" ? <Home user={user}></Home>
+        state === "edit" ? <Edit user={user}></Edit>
         : state === "explore" ? <Explore user={user}></Explore>
         : state === "settings" ? <Settings user={user}></Settings>
         : null
